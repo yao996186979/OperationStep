@@ -6,19 +6,20 @@
 //  Copyright © 2017年 姚东. All rights reserved.
 //
 
-#import "StepButton.h"
+#import "StepTop.h"
 
-@interface StepButton ()
+@interface StepTop ()
 @property (nonatomic ,strong) CAShapeLayer * alayer;
 @end
 
-@implementation StepButton
+@implementation StepTop
 - (instancetype) initWithTitle:(NSString *)title frame:(CGRect)frame{
     if(self = [super init]){
         [self setTitle:title forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont systemFontOfSize:14];
         self.frame = frame;
-    }
+        
+            }
     return self;
 }
 - (void)setStyleType:(StyleType)styleType{
@@ -42,6 +43,9 @@
     _alayer.path = aPath.CGPath;
     
     [self.layer insertSublayer:_alayer atIndex:0];
+    
+    self.selectorType = SelectorTypeUnSelected; //默认未选中
+
     
 }
 - (void)setSelectorType:(SelectorType)selectorType{
