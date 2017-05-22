@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author       = {"yaoding" => "1248170343@qq.com"}
   s.source       = { :git => "https://github.com/yao996186979/OperationStep.git", :tag => "0.0.1" }
-  s.source_files  ="Classes/*.{h,m}"
+  s.source_files  ="OperationStepDemo/OperationStepView/*.{h,m}"
   s.requires_arc = true
 
 
