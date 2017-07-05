@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "StepBaseView.h"
+#import "PGStepBaseView.h"
 @interface ViewController ()<ActionDelegate>
 
 @end
@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    StepBaseView * stepView = [[StepBaseView alloc]initWithFrame:self.view.bounds];
+    PGStepBaseView * stepView = [[PGStepBaseView alloc]initWithFrame:self.view.bounds];
     stepView.titleArr = @[@"第一步",@"第二步",@"第三步"];
     stepView.viewArr = [self ProgressView];
     stepView.bottomTitles = @[@[@"下一步"],@[@"上一步",@"下一步"],@[@"上一步"]];
@@ -26,7 +26,7 @@
 
 }
 // setpBaseView 代理事件
-- (void)actionClickIsTop:(BOOL)isTop TopButton:(NSArray<StepTop *> *)topArr BottomButton:(NSArray<NSArray<StepBottomButton *> *> *)bottomArr Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView *)backView{
+- (void)actionClickIsTop:(BOOL)isTop TopButton:(NSArray<PGStepTop *> *)topArr BottomButton:(NSArray<NSArray<StepBottomButton *> *> *)bottomArr Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView *)backView{
     // 下标 从 0 开始
     
     if (isTop) {

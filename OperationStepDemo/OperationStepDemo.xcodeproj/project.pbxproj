@@ -13,9 +13,11 @@
 		DA049F8F1ECEC746000B2C6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA049F8D1ECEC746000B2C6B /* Main.storyboard */; };
 		DA049F911ECEC746000B2C6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA049F901ECEC746000B2C6B /* Assets.xcassets */; };
 		DA049F941ECEC746000B2C6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA049F921ECEC746000B2C6B /* LaunchScreen.storyboard */; };
-		DA049FA01ECEC7A2000B2C6B /* StepBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA049F9D1ECEC7A2000B2C6B /* StepBaseView.m */; };
-		DA049FA11ECEC7A2000B2C6B /* StepTop.m in Sources */ = {isa = PBXBuildFile; fileRef = DA049F9F1ECEC7A2000B2C6B /* StepTop.m */; };
-		DA049FA41ECED66B000B2C6B /* StepBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = DA049FA31ECED66B000B2C6B /* StepBottom.m */; };
+		DA49A0481F0CD21600948836 /* PGBaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49A03E1F0CD21600948836 /* PGBaseInfoView.m */; };
+		DA49A0491F0CD21600948836 /* PGInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49A0401F0CD21600948836 /* PGInputTextView.m */; };
+		DA49A04A1F0CD21600948836 /* PGStepBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49A0431F0CD21600948836 /* PGStepBaseView.m */; };
+		DA49A04B1F0CD21600948836 /* PGStepBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49A0451F0CD21600948836 /* PGStepBottom.m */; };
+		DA49A04C1F0CD21600948836 /* PGStepTop.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49A0471F0CD21600948836 /* PGStepTop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,12 +31,16 @@
 		DA049F901ECEC746000B2C6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA049F931ECEC746000B2C6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA049F951ECEC746000B2C6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA049F9C1ECEC7A2000B2C6B /* StepBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepBaseView.h; sourceTree = "<group>"; };
-		DA049F9D1ECEC7A2000B2C6B /* StepBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepBaseView.m; sourceTree = "<group>"; };
-		DA049F9E1ECEC7A2000B2C6B /* StepTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepTop.h; sourceTree = "<group>"; };
-		DA049F9F1ECEC7A2000B2C6B /* StepTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepTop.m; sourceTree = "<group>"; };
-		DA049FA21ECED66B000B2C6B /* StepBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepBottom.h; sourceTree = "<group>"; };
-		DA049FA31ECED66B000B2C6B /* StepBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepBottom.m; sourceTree = "<group>"; };
+		DA49A03D1F0CD21600948836 /* PGBaseInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGBaseInfoView.h; sourceTree = "<group>"; };
+		DA49A03E1F0CD21600948836 /* PGBaseInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGBaseInfoView.m; sourceTree = "<group>"; };
+		DA49A03F1F0CD21600948836 /* PGInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGInputTextView.h; sourceTree = "<group>"; };
+		DA49A0401F0CD21600948836 /* PGInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGInputTextView.m; sourceTree = "<group>"; };
+		DA49A0421F0CD21600948836 /* PGStepBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGStepBaseView.h; sourceTree = "<group>"; };
+		DA49A0431F0CD21600948836 /* PGStepBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGStepBaseView.m; sourceTree = "<group>"; };
+		DA49A0441F0CD21600948836 /* PGStepBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGStepBottom.h; sourceTree = "<group>"; };
+		DA49A0451F0CD21600948836 /* PGStepBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGStepBottom.m; sourceTree = "<group>"; };
+		DA49A0461F0CD21600948836 /* PGStepTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGStepTop.h; sourceTree = "<group>"; };
+		DA49A0471F0CD21600948836 /* PGStepTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGStepTop.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +73,7 @@
 		DA049F831ECEC746000B2C6B /* OperationStepDemo */ = {
 			isa = PBXGroup;
 			children = (
-				DA049F9B1ECEC7A2000B2C6B /* OperationStepView */,
+				DA49A03B1F0CD21600948836 /* PGOperationView */,
 				DA049F871ECEC746000B2C6B /* AppDelegate.h */,
 				DA049F881ECEC746000B2C6B /* AppDelegate.m */,
 				DA049F8A1ECEC746000B2C6B /* ViewController.h */,
@@ -89,17 +95,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DA049F9B1ECEC7A2000B2C6B /* OperationStepView */ = {
+		DA49A03B1F0CD21600948836 /* PGOperationView */ = {
 			isa = PBXGroup;
 			children = (
-				DA049F9E1ECEC7A2000B2C6B /* StepTop.h */,
-				DA049F9F1ECEC7A2000B2C6B /* StepTop.m */,
-				DA049FA21ECED66B000B2C6B /* StepBottom.h */,
-				DA049FA31ECED66B000B2C6B /* StepBottom.m */,
-				DA049F9C1ECEC7A2000B2C6B /* StepBaseView.h */,
-				DA049F9D1ECEC7A2000B2C6B /* StepBaseView.m */,
+				DA49A03C1F0CD21600948836 /* PGBaseInfoView */,
+				DA49A0411F0CD21600948836 /* PGStepView */,
 			);
-			path = OperationStepView;
+			path = PGOperationView;
+			sourceTree = "<group>";
+		};
+		DA49A03C1F0CD21600948836 /* PGBaseInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				DA49A03D1F0CD21600948836 /* PGBaseInfoView.h */,
+				DA49A03E1F0CD21600948836 /* PGBaseInfoView.m */,
+				DA49A03F1F0CD21600948836 /* PGInputTextView.h */,
+				DA49A0401F0CD21600948836 /* PGInputTextView.m */,
+			);
+			path = PGBaseInfoView;
+			sourceTree = "<group>";
+		};
+		DA49A0411F0CD21600948836 /* PGStepView */ = {
+			isa = PBXGroup;
+			children = (
+				DA49A0421F0CD21600948836 /* PGStepBaseView.h */,
+				DA49A0431F0CD21600948836 /* PGStepBaseView.m */,
+				DA49A0441F0CD21600948836 /* PGStepBottom.h */,
+				DA49A0451F0CD21600948836 /* PGStepBottom.m */,
+				DA49A0461F0CD21600948836 /* PGStepTop.h */,
+				DA49A0471F0CD21600948836 /* PGStepTop.m */,
+			);
+			path = PGStepView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,12 +199,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA049FA41ECED66B000B2C6B /* StepBottom.m in Sources */,
+				DA49A0481F0CD21600948836 /* PGBaseInfoView.m in Sources */,
 				DA049F8C1ECEC746000B2C6B /* ViewController.m in Sources */,
-				DA049FA11ECEC7A2000B2C6B /* StepTop.m in Sources */,
+				DA49A04A1F0CD21600948836 /* PGStepBaseView.m in Sources */,
+				DA49A04B1F0CD21600948836 /* PGStepBottom.m in Sources */,
+				DA49A04C1F0CD21600948836 /* PGStepTop.m in Sources */,
+				DA49A0491F0CD21600948836 /* PGInputTextView.m in Sources */,
 				DA049F891ECEC746000B2C6B /* AppDelegate.m in Sources */,
 				DA049F861ECEC746000B2C6B /* main.m in Sources */,
-				DA049FA01ECEC7A2000B2C6B /* StepBaseView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

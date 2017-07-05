@@ -6,15 +6,15 @@
 //  Copyright © 2017年 姚东. All rights reserved.
 //
 
-#import "StepBaseView.h"
+#import "PGStepBaseView.h"
 
-@interface StepBaseView()<BottomButtonDelegate,UIScrollViewDelegate>
+@interface PGStepBaseView()<BottomButtonDelegate,UIScrollViewDelegate>
 // 标题视图
 @property (nonatomic ,strong)UIScrollView * titleView;
 // 信息展示视图
 @property (nonatomic ,strong)UIScrollView * infoBackView;
 @end
-@implementation StepBaseView
+@implementation PGStepBaseView
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self == [super initWithFrame:frame]) {
         self.frame = frame;
@@ -46,7 +46,7 @@
     self.titleBtnWidth = (V_W - 40)/titleArr.count+tipWidth/2;
     for (int index = 0; index < titleArr.count; index ++) {
         
-        StepTop * step = [[StepTop alloc]initWithTitle:titleArr[index] frame:CGRectMake(10+(self.titleBtnWidth-10)*index,(T_V_H - T_B_H)/2, self.titleBtnWidth, T_B_H)];
+        PGStepTop * step = [[PGStepTop alloc]initWithTitle:titleArr[index] frame:CGRectMake(10+(self.titleBtnWidth-10)*index,(T_V_H - T_B_H)/2, self.titleBtnWidth, T_B_H)];
         if (index == 0) {                  //第一位起始样式
             step.styleType  = StyleTypeStart;
             step.selectorType = SelectorTypeSelected; //默认第一步选中
@@ -76,7 +76,7 @@
     
     for (int index = 0; index < bottomTitles.count; index ++) {
         
-        StepBottom * bottom = [[StepBottom alloc]init];
+        PGStepBottom * bottom = [[PGStepBottom alloc]init];
         bottom.XY = CGSizeMake(V_W * index, self.infoBackView.frame.size.height - S_B_H);
         bottom.titles = bottomTitles[index];
         bottom.delegate = self;
@@ -89,7 +89,7 @@
 - (void)topAction:(UIButton*)button{
     
     //一些简单变换操作
-    for (StepTop * btn in self.topBtnArr) {
+    for (PGStepTop * btn in self.topBtnArr) {
         btn.selectorType = SelectorTypeUnSelected;
     }
     self.topBtnArr[button.tag].selectorType = SelectorTypeSelected;
@@ -122,7 +122,7 @@
     // 设置 顶部按钮 状态变化
     int index = scrollView.contentOffset.x/V_W;
     
-    for (StepTop * btn in self.topBtnArr) {
+    for (PGStepTop * btn in self.topBtnArr) {
         btn.selectorType = SelectorTypeUnSelected;
     }
     self.topBtnArr[index].selectorType = SelectorTypeSelected;

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StepTop.h"
-#import "StepBottom.h"
+#import "PGStepTop.h"
+#import "PGStepBottom.h"
 /// 屏幕高度
 #define V_H CGRectGetHeight([UIScreen mainScreen].bounds)
 /// 屏幕宽度
@@ -29,12 +29,10 @@
  @param tag 点击哪个
  @param page 当前页
  */
-- (void)actionClickIsTop:(BOOL)isTop TopButton:(NSArray<StepTop*>*)topArr BottomButton:(NSArray<NSArray<StepBottomButton *>*>*)bottomArr Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView*)backView;
+- (void)actionClickIsTop:(BOOL)isTop TopButton:(NSArray<PGStepTop*>*)topArr BottomButton:(NSArray<NSArray<StepBottomButton *>*>*)bottomArr Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView*)backView;
 
 @end
-@interface StepBaseView : UIView
-
-
+@interface PGStepBaseView : UIView
 
 @property (nonatomic, assign) id<ActionDelegate>delegate;
 // 注:请按步骤设置属性
@@ -48,7 +46,7 @@
 @property  (nonatomic, strong) NSArray <NSArray <NSString *> *>*bottomTitles;
 
 // 上部分按钮
-@property (nonatomic, strong)NSMutableArray <StepTop *>* topBtnArr;
+@property (nonatomic, strong)NSMutableArray <PGStepTop*>* topBtnArr;
 // 下部分按钮
 @property (nonatomic, strong)NSMutableArray <NSArray <StepBottomButton *>*>* bottomBtnArr;
 ///设置下部按钮全开

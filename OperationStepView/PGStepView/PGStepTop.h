@@ -29,7 +29,7 @@ typedef  NS_ENUM(NSInteger,StyleType){
     StyleTypeMiddle,     //中间样式
     StyleTypeEnd         //结束样式
 };
-@interface StepTop : UIButton
+@interface PGStepTop : UIButton
 @property (nonatomic ,assign)SelectorType  selectorType;  // 选中类型
 @property (nonatomic ,assign)StyleType  styleType;        // 展示样式
 //初始化  

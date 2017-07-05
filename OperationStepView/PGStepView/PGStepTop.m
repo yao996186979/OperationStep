@@ -6,13 +6,13 @@
 //  Copyright © 2017年 姚东. All rights reserved.
 //
 
-#import "StepTop.h"
+#import "PGStepTop.h"
 
-@interface StepTop ()
+@interface PGStepTop ()
 @property (nonatomic ,strong) CAShapeLayer * alayer;
 @end
 
-@implementation StepTop
+@implementation PGStepTop
 - (instancetype) initWithTitle:(NSString *)title frame:(CGRect)frame{
     if(self = [super init]){
         [self setTitle:title forState:UIControlStateNormal];

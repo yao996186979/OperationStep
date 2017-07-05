@@ -34,7 +34,7 @@
 - (void)clickButtonTag:(NSInteger)tag;
 
 @end
-@interface StepBottom : UIView
+@interface PGStepBottom : UIView
 @property (nonatomic ,assign) id<BottomButtonDelegate>delegate;
 ///titles 按钮名称
 @property (nonatomic ,strong) NSArray * titles;

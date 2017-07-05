@@ -6,9 +6,9 @@
 //  Copyright © 2017年 姚东. All rights reserved.
 //
 
-#import "StepBottom.h"
+#import "PGStepBottom.h"
 
-@implementation StepBottom
+@implementation PGStepBottom
 
 - (instancetype)init{
     
