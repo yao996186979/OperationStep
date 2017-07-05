@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "OperationStepView"
-  s.version      = “0.1.0”  
+  s.version      = "0.1.0"  
   s.summary      = "OperationStep is used for show you operation."
   s.description  = <<-DESC
                    It is a component for ios to operation,written by Objective-C.
