@@ -42,7 +42,7 @@
         self.backView.layer.borderWidth = 1;
         self.backView.layer.borderColor = [UIColor blackColor].CGColor;
         [self addSubview:self.backView];
-
+      
     }
     return self;
 }

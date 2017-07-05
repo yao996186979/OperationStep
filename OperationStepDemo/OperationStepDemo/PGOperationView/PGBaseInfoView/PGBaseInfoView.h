@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PGInputTextView.h"
-@interface PGBaseInfoView : UIScrollView
+@interface PGBaseInfoView : UIScrollView <PGInputTextViewDelegate>
 
 
 /**
