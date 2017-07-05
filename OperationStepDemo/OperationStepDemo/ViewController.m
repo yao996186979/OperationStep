@@ -66,7 +66,7 @@
     for (int index = 0; index< 3; index++) {
         //以 titleView的高度 为起始位置
         if (index == 0) {
-            PGBaseInfoView * base = [[PGBaseInfoView alloc]initWithFrame:CGRectMake(index*V_W, 0, V_W, self.view.frame.size.height-T_V_H) titles:@[@"单据编号",@"申请日期",@"拒绝日期",@"秦时明月"] types:@[@(TextTypeOnlyShow),@(TextTypeDate),@(TextTypeSelector),@(TextTypeOnlyShow)]];
+            PGBaseInfoView * base = [[PGBaseInfoView alloc]initWithFrame:CGRectMake(index*V_W, 0, V_W, self.view.frame.size.height-T_V_H) titles:@[@"单据编号",@"申请日期",@"拒绝日期",@"秦时明月",@"备注"] types:@[@(TextTypeOnlyShow),@(TextTypeDate),@(TextTypeSelector),@(TextTypeOnlyShow),@(TextTypeLongText)]];
             [returnArr addObject:base];
         }
         else{

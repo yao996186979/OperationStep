@@ -15,6 +15,8 @@
 #define DefaultColor [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1/1.0]
 // 标题颜色     999999
 #define TitleColor [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1/1.0]
+
+
 @interface PGInputTextView() <UITextViewDelegate>
 @property (nonatomic ,strong) UIButton * backView; //文本背景框
 @property (nonatomic ,copy) NSString *title;
@@ -123,6 +125,7 @@
  
     //需要继承设置的位置 大小
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, [UIScreen mainScreen].bounds.size.width-30, 72.5+38);
+    self.backView.frame = CGRectMake(self.backView.frame.origin.x, self.backView.frame.origin.y, [UIScreen mainScreen].bounds.size.width-30, 72.5+38);
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15,0, self.backView.frame.size.width-30, 74)];
     self.textView.textColor = NormalColor;
     self.textView.font = [UIFont fontWithName:@"PingFangSC-Medium" size:12];
