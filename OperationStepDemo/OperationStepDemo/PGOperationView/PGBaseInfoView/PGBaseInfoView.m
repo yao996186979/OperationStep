@@ -10,7 +10,7 @@
 
 @implementation PGBaseInfoView 
 
-- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString *> *)titles types:(NSArray<NSNumber *> *)types{
+- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString *> *)titles types:(NSArray<NSNumber *> *)types values:(NSArray<NSDictionary*>*)values{
  
     if (self = [super initWithFrame:frame]) {
         self.frame = frame;
@@ -26,6 +26,8 @@
         for (int index =0; index<titles.count;index++) {
            PGInputTextView * inputText= [[PGInputTextView alloc]initWithTitle:titles[index] frame:CGRectMake(index%2*(width+intervalWidth)+15,index/2*72.5, width, 72.5)];
             inputText.type = [types[index] intValue];
+            inputText.value =values?values[index]:nil;
+            inputText.tag = index;
             inputText.delegate = self;
             bottom = CGRectGetMaxY(inputText.frame);
             [backView addSubview:inputText];
@@ -36,17 +38,18 @@
             //frame 不变 更改滑动区域
             self.contentSize = CGSizeMake(0, CGRectGetMaxY(backView.frame)+50+15);
         }
-//        else{
-//            //自适应高度 足够 (预留区域足够展示)
-//            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, CGRectGetMaxY(backView.frame));
-//        }
     }
-
     return self;
 }
+#pragma mark 事件代理方法
 - (void)pgInputTextViewAction:(PGInputTextView *)view{
+     // 通知外部 value值需要更改做相应操作
+    if ([_inputDelegate respondsToSelector:@selector(valueChangeOfPGInputTextView:)]){
+        [_inputDelegate valueChangeOfPGInputTextView:view];
+    }
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    NSLog(@"%d",view.type);
-    
+    [self endEditing:YES];
 }
 @end

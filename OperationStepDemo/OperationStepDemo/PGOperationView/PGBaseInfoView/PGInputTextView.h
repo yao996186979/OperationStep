@@ -26,12 +26,14 @@ typedef NS_ENUM (NSInteger,TextType){
 
 @end
 
+
+
 @interface PGInputTextView : UIView
 
 ///定义代理属性,用来存储代理对象
 @property (nonatomic, weak) id<PGInputTextViewDelegate>delegate;
-///对外公布的选择数据
-@property (nonatomic,strong) id value;
+///对外公布的选择数据   @{@"n":@"显示名称",@"id":@"真实value"}
+@property (nonatomic,strong) NSDictionary * value;
 ///文本输入类型
 @property (nonatomic,assign)TextType type;
 /**

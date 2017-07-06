@@ -17,7 +17,7 @@
 #define TitleColor [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1/1.0]
 
 
-@interface PGInputTextView() <UITextViewDelegate>
+@interface PGInputTextView() <UITextViewDelegate,UITextFieldDelegate>
 @property (nonatomic ,strong) UIButton * backView; //文本背景框
 @property (nonatomic ,copy) NSString *title;
 @property (nonatomic ,strong) UITextField * inputText;  //纯文本
@@ -28,6 +28,7 @@
 
 
 @end
+ 
 @implementation PGInputTextView
 - (instancetype)initWithTitle:(NSString *)title frame:(CGRect)frame{
     if (self =[super init]) {
@@ -77,6 +78,10 @@
     self.inputText.textColor = NormalColor;
     self.inputText.font = [UIFont fontWithName:@"PingFangSC-Medium" size:12];
     [self.inputText addTarget:self action:@selector(clickActionCenter) forControlEvents:UIControlEventEditingDidEnd];
+    self.inputText.delegate = self;
+    self.inputText.placeholder = [NSString stringWithFormat:@"输入%@",self.title];
+    [ self.inputText setValue:DefaultColor forKeyPath:@"_placeholderLabel.textColor"];
+    self.inputText.returnKeyType = UIReturnKeyDone;
     [self.backView addSubview:self.inputText];
 }
 //添加日期选择
@@ -84,9 +89,7 @@
     self.dateLable = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, self.frame.size.width-40, BackViewHeight)];
     self.dateLable.textColor = NormalColor;
     self.dateLable.font = [UIFont fontWithName:@"PingFangSC-Medium" size:12];
-   
     [self.backView addSubview:self.dateLable];
-    self.value = @((long long)[[NSDate date] timeIntervalSince1970] * 1000);
     UIImageView * image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"img-pg16-h-calendar.png"]];
     image.center = CGPointMake(self.frame.size.width-19, BackViewHeight/2);
     image.bounds = CGRectMake(0, 0, 18, 17);
@@ -130,45 +133,40 @@
     self.textView.textColor = NormalColor;
     self.textView.font = [UIFont fontWithName:@"PingFangSC-Medium" size:12];
     self.textView.delegate = self;
+    self.textView.returnKeyType = UIReturnKeyDone;
     [self.backView addSubview:self.textView];
 }
-- (void)textViewDidEndEditing:(UITextView *)textView{
-    //统一交与事件中心处理
-    [self clickActionCenter];
-}
 #pragma mark 编辑页面时使用
-- (void)setValue:(id)value{
+- (void)setValue:(NSDictionary *)value{
     _value = value;
     switch (_type) {
         case TextTypeNormal:
-           self.inputText.text = value;
+            self.inputText.text = value[@"n"];
             break;
         case TextTypeDate:
-             self.dateLable.text = [self timestapToStringWithTimestap:[value longLongValue] formatter:@"yyyy-MM-dd"];
+             self.dateLable.text = [self dateStringValue:value];
             break;
         case TextTypeSelector:
-            
-            self.selectorLable.text = [value isEqualToString:@""]?[NSString stringWithFormat:@"选择%@",self.title]:value[@"n"];
+            self.selectorLable.text = value?value[@"n"]:[NSString stringWithFormat:@"选择%@",self.title];
             self.selectorLable.textColor = value?NormalColor:DefaultColor;
             break;
         case TextTypeOnlyShow:
-             self.onlyShow.text = [value isEqualToString:@""]?@"暂无":value;
-             self.onlyShow.textColor = [value isEqualToString:@""]?NormalColor:DefaultColor;
+            self.onlyShow.text = value?value[@"n"]:@"暂无";
+             self.onlyShow.textColor = value?NormalColor:DefaultColor;
             break;
         case TextTypeLongText:
-            self.textView.text = value;
+            self.textView.text = value[@"n"];
             break;
         default:
             break;
     }
 }
 #pragma mark  日期格式
-- (NSString *)timestapToStringWithTimestap:(long long)timestape formatter:(NSString *)fmt {
-    if (!timestape) {
-        return @"";
-    }
+- (NSString *)dateStringValue:(NSDictionary*)value {
+   
+    long long timestape = value?[value[@"id"] longLongValue]:(long long)[[NSDate date] timeIntervalSince1970] * 1000;
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = fmt;
+    formatter.dateFormat = @"yyyy-MM-dd";
     NSDate * confromTimesp = [NSDate dateWithTimeIntervalSince1970:timestape/1000.0];
     return [formatter stringFromDate:confromTimesp];
 }
@@ -178,6 +176,27 @@
     if ([_delegate respondsToSelector:@selector(pgInputTextViewAction:)]) {
         [_delegate pgInputTextViewAction:self];
     }
+}
+#pragma mark 文本处理
+//实现UITextField代理方法
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
+    [textField resignFirstResponder];//取消第一响应者
+    
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+
+        return FALSE;
+    }
+    return TRUE;
+}
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    //统一交与事件中心处理
+    [self clickActionCenter];
 }
 @end

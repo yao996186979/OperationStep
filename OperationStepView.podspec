@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author       = {"yaodong" => "1248170343@qq.com"}
   s.source       = { :git => "https://github.com/yao996186979/OperationStep.git", :tag => "0.1.0" }
-  s.source_files  ="OperationStepView/**/*.{h,m}"
+  s.source_files  ="OperationStepDemo/OperationStepDemo/PGOperationView/**/*.{h,m}"
   s.requires_arc = true
   s.framework  = "UIKit"
   s.ios.deployment_target = '8.0'

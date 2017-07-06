@@ -16,6 +16,12 @@
 
 #import <UIKit/UIKit.h>
 #import "PGInputTextView.h"
+
+@protocol PGBaseInfoViewDelegate <NSObject>
+
+- (void)valueChangeOfPGInputTextView:(PGInputTextView*)inputTextView;
+
+@end
 @interface PGBaseInfoView : UIScrollView <PGInputTextViewDelegate>
 
 
@@ -25,8 +31,11 @@
  @param frame 大小
  @param titles 标题
  @param types 类型
+ @param values 初始值
  @return PGBaseInfoView
  */
-- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString*>*)titles types:(NSArray<NSNumber*>*)types;
+- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString*>*)titles types:(NSArray<NSNumber*>*)types values:(NSArray*)values;
+
+@property (nonatomic ,weak) id <PGBaseInfoViewDelegate> inputDelegate;
 
 @end

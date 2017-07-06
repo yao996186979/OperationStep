@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "PGStepBaseView.h"
 #import "PGBaseInfoView.h"
-@interface ViewController ()<ActionDelegate>
+@interface ViewController ()<PGStepBaseViewDelegate,PGBaseInfoViewDelegate>
 
 @end
 
@@ -52,12 +52,29 @@
     }
 
 }
+#pragma mark value更改方法
+- (void)valueChangeOfPGInputTextView:(PGInputTextView *)inputTextView{
+    
+ 
+    if (inputTextView.type == TextTypeDate) {
+        
+        NSLog(@"日期修改，具体单项根据 tag 区分");
+        
+    }
+    else if (inputTextView.type == TextTypeNormal){
+        
+        NSLog(@"文字修改，具体单项根据 tag 区分");
+    }
+    else if (inputTextView.type == TextTypeSelector){
+  
+        NSLog(@"选项修改，具体单项根据 tag 区分");
+    }
+    else if (inputTextView.type == TextTypeLongText){
+        
+        NSLog(@"长文本修改，具体单项根据 tag 区分");
+    }
 
-
-
-
-
-
+}
 // 自定义展示步骤视图
 - (NSMutableArray*)ProgressView{
     
@@ -66,7 +83,17 @@
     for (int index = 0; index< 3; index++) {
         //以 titleView的高度 为起始位置
         if (index == 0) {
-            PGBaseInfoView * base = [[PGBaseInfoView alloc]initWithFrame:CGRectMake(index*V_W, 0, V_W, self.view.frame.size.height-T_V_H) titles:@[@"单据编号",@"申请日期",@"拒绝日期",@"秦时明月",@"备注"] types:@[@(TextTypeOnlyShow),@(TextTypeDate),@(TextTypeSelector),@(TextTypeOnlyShow),@(TextTypeLongText)]];
+            
+            // 配置数据 还是自己使用的数据为准
+            
+            NSArray * titles = @[@"今夜何时",@"今朝何梦",@"今此为何",@"今苦为谁",@"今生何愿",@"老骥伏枥",@"志在千里",@"厚积薄发",@"天道酬勤"];
+            NSArray * types = @[@(TextTypeOnlyShow),@(TextTypeDate),@(TextTypeSelector),@(TextTypeSelector),@(TextTypeSelector),@(TextTypeSelector),@(TextTypeNormal),@(TextTypeNormal),@(TextTypeLongText)];
+//            NSArray * values = @[@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""}];
+            PGBaseInfoView * base = [[PGBaseInfoView alloc]initWithFrame:
+                                     CGRectMake(index*V_W, 0, V_W,V_H-T_V_H-T_B_H-20)    titles:titles
+                                                                   types:types
+                                                                  values:nil];
+            base.inputDelegate = self;
             [returnArr addObject:base];
         }
         else{

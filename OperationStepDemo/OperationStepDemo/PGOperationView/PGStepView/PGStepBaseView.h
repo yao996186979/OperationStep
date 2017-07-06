@@ -17,7 +17,7 @@
 #define T_V_H  60
 // 步骤按钮高度 Title Button Height
 #define T_B_H  40
-@protocol ActionDelegate <NSObject>
+@protocol PGStepBaseViewDelegate <NSObject>
 
 
 /**
@@ -34,7 +34,7 @@
 @end
 @interface PGStepBaseView : UIView
 
-@property (nonatomic, assign) id<ActionDelegate>delegate;
+@property (nonatomic, assign) id<PGStepBaseViewDelegate>delegate;
 // 注:请按步骤设置属性
 // 重叠部分  StepButton的tipWidth/2
 @property  (nonatomic, assign) float titleBtnWidth;
