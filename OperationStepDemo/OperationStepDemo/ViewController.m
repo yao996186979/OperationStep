@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     PGStepBaseView * stepView = [[PGStepBaseView alloc]initWithFrame:self.view.bounds];
+    //设置标题进度展示形式
+    stepView.formType = FormTypeLineCircle;
     stepView.titleArr = @[@"第一步",@"第二步",@"第三步"];
     stepView.viewArr = [self ProgressView];
     stepView.bottomTitles = @[@[@"下一步"],@[@"上一步",@"下一步"],@[@"上一步"]];

@@ -23,7 +23,7 @@
         float statusBarHeight = 22;
         
         self.titleView  = [[UIScrollView alloc]initWithFrame:CGRectMake(0, statusBarHeight, V_H, T_V_H)];
-        self.titleView.backgroundColor = [UIColor blackColor];
+        self.titleView.backgroundColor = [UIColor colorWithRed:51/255.0 green:48/255.0 blue:44/255.0 alpha:1/1.0];
         [self addSubview:self.titleView];
         
       // 可关闭滑动 可设置自行切换动画
@@ -43,20 +43,32 @@
 #pragma mark 设置标题
 - (void)setTitleArr:(NSArray *)titleArr{
     
-    self.titleBtnWidth = (V_W - 40)/titleArr.count+tipWidth/2;
+    self.titleBtnWidth =self.formType == FormTypeTip?(V_W - 40)/titleArr.count+tipWidth/2:V_W/titleArr.count;
     for (int index = 0; index < titleArr.count; index ++) {
         
-        PGStepTop * step = [[PGStepTop alloc]initWithTitle:titleArr[index] frame:CGRectMake(10+(self.titleBtnWidth-10)*index,(T_V_H - T_B_H)/2, self.titleBtnWidth, T_B_H)];
-        if (index == 0) {                  //第一位起始样式
-            step.styleType  = StyleTypeStart;
-            step.selectorType = SelectorTypeSelected; //默认第一步选中
+        PGStepTop * step = [[PGStepTop alloc]initWithTitle:titleArr[index] frame:CGRectZero];
+        
+        if (self.formType == FormTypeTip) {
+            step.frame = CGRectMake(10+(self.titleBtnWidth-10)*index,(T_V_H - T_B_H)/2, self.titleBtnWidth, T_B_H);
+            if (index == 0) {                  //第一位起始样式
+                step.styleType  = StyleTypeStart;
+                step.selectorType = SelectorTypeSelected; //默认第一步选中
+            }
+            else if (index == titleArr.count-1){ //末尾结束样式
+                step.styleType = StyleTypeEnd;
+            }
+            else{                              //中间样式
+                step.styleType = StyleTypeMiddle;
+            }
         }
-        else if (index == titleArr.count-1){ //末尾结束样式
-            step.styleType = StyleTypeEnd;
+        else{
+            step.frame = CGRectMake(self.titleBtnWidth*index, (T_V_H - T_B_H)/2, self.titleBtnWidth, T_B_H);
+            step.index = index + 1;
+            step.formType = FormTypeLineCircle;
+            step.styleType = StyleTypeLineCircle;
+            
         }
-        else{                              //中间样式
-            step.styleType = StyleTypeMiddle;
-        }
+    
         step.tag = index;
         [step addTarget:self action:@selector(topAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.titleView addSubview:step];

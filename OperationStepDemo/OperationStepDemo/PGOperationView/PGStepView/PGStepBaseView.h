@@ -34,6 +34,7 @@
 @end
 @interface PGStepBaseView : UIView
 
+@property (nonatomic, assign) FormType  formType;
 @property (nonatomic, assign) id<PGStepBaseViewDelegate>delegate;
 // 注:请按步骤设置属性
 // 重叠部分  StepButton的tipWidth/2

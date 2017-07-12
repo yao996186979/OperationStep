@@ -17,21 +17,37 @@
 #define UnSelectedStrokeColor [UIColor colorWithRed:219/255.0 green:217/255.0 blue:213/255.0 alpha:1/1.0] // 未选中填充颜色
 #define UnSelectedfillColor [UIColor colorWithRed:219/255.0 green:217/255.0 blue:213/255.0 alpha:1/1.0] // 未选中线框颜色
 
-#define tipWidth 20 // 箭头三角长度 
-
+#define tipWidth 20       // 箭头三角长度
+#define CircleDefautD  9   // 圆圈默认直径
+#define CircleFillD    16   // 圆圈填充直径
+#define CircleHaloD    22  // 光晕背景直径
+#define LineWidthDefault    (self.frame.size.width-CircleDefautD)/2 //默认线宽
+#define LineWidthSelect    (self.frame.size.width-CircleFillD)/2 //选中线宽
+#define LineCirclY   self.frame.size.height/3   //起始高度
 typedef  NS_ENUM(NSInteger,SelectorType){
     SelectorTypeUnSelected,      //未选中
     SelectorTypeSelected,    //选中
-//    SelectorTypeHaveInfoUnSelected //有信息未选中
+    SelectorTypeHaveInfoUnSelected //有信息未选中
 };
 typedef  NS_ENUM(NSInteger,StyleType){
     StyleTypeStart,      //开始样式
     StyleTypeMiddle,     //中间样式
-    StyleTypeEnd         //结束样式
+    StyleTypeEnd,        //结束样式
+    StyleTypeLineCircle  //线圈样式
+};
+typedef  NS_ENUM(NSInteger,FormType){
+    FormTypeTip,         //箭头形式
+    FormTypeLineCircle,  //线圈形式
 };
 @interface PGStepTop : UIButton
-@property (nonatomic ,assign)SelectorType  selectorType;  // 选中类型
-@property (nonatomic ,assign)StyleType  styleType;        // 展示样式
+// 显示形式
+@property (nonatomic ,assign)FormType formType;
+// 选中类型
+@property (nonatomic ,assign)SelectorType  selectorType;
+// 展示样式
+@property (nonatomic ,assign)StyleType  styleType;
+// 下标
+@property (nonatomic ,assign)NSInteger index;
 //初始化  
 - (instancetype) initWithTitle:(NSString *) title frame:(CGRect)frame;
 @end
