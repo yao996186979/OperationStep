@@ -33,6 +33,7 @@
         self.infoBackView.scrollEnabled = YES;
         self.infoBackView.pagingEnabled = YES;
         self.infoBackView.delegate = self;
+        self.infoBackView.scrollEnabled = NO;
         [self addSubview:self.infoBackView];
         self.topBtnArr = [[NSMutableArray alloc]init];
         self.bottomBtnArr = [[NSMutableArray alloc]init];
@@ -66,9 +67,20 @@
             step.index = index + 1;
             step.formType = FormTypeLineCircle;
             step.styleType = StyleTypeLineCircle;
-            
-        }
-    
+            //这里需要注意
+            //第一个默认为选中状态 不需要动画
+            if (index == 0) {
+                step.specialType = LineCircleSpecialTypeNoAnimation;
+                step.selectorType = SelectorTypeSelected;
+            }
+             //最后一个需要将进程走完
+            else if (index == titleArr.count-1){
+                step.specialType = LineCircleSpecialTypeAllAnimation;
+            }
+            else{
+                step.specialType = LineCircleSpecialTypeNormalAnimation;
+            }
+      }
         step.tag = index;
         [step addTarget:self action:@selector(topAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.titleView addSubview:step];
@@ -98,17 +110,14 @@
     
 }
 #pragma mark 上部分点击事件
-- (void)topAction:(UIButton*)button{
+- (void)topAction:(PGStepTop*)button{
     
     //一些简单变换操作
-    for (PGStepTop * btn in self.topBtnArr) {
-        btn.selectorType = SelectorTypeUnSelected;
+    if (button.selectorType == SelectorTypeUnSelected) {
+        return;
     }
-    self.topBtnArr[button.tag].selectorType = SelectorTypeSelected;
-    //切换 视图展示
-    self.infoBackView.contentOffset = CGPointMake(button.tag* V_W, 0);
-    
-    
+    [self changeTopButtonWithStepTop:button];
+  
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:TopButton:BottomButton:Tag:Page:backView:)]) {
         [self.delegate actionClickIsTop:YES TopButton:self.topBtnArr BottomButton:self.bottomBtnArr Tag:button.tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
@@ -116,6 +125,7 @@
 }
 #pragma mark 下部分点击事件
 - (void)clickButtonTag:(NSInteger)tag{
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:TopButton:BottomButton:Tag:Page:backView:)]) {
         [self.delegate actionClickIsTop:NO TopButton:self.topBtnArr BottomButton:self.bottomBtnArr Tag:tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
     }
@@ -134,9 +144,41 @@
     // 设置 顶部按钮 状态变化
     int index = scrollView.contentOffset.x/V_W;
     
-    for (PGStepTop * btn in self.topBtnArr) {
-        btn.selectorType = SelectorTypeUnSelected;
+   [self changeTopButtonWithStepTop:self.topBtnArr[index]];
+}
+#pragma mark 上部分状态变换
+- (void)changeTopButtonWithStepTop:(PGStepTop*)button{
+    
+    //切换 视图展示
+    [UIView animateWithDuration:AnimationDuration animations:^{
+       self.infoBackView.contentOffset = CGPointMake(button.tag* V_W, 0);
+    }];
+    
+    
+    if (self.formType == FormTypeTip){
+        for (PGStepTop * btn in self.topBtnArr) {
+            btn.selectorType = SelectorTypeUnSelected;
+        }
+        self.topBtnArr[button.tag].selectorType = SelectorTypeSelected;
     }
-    self.topBtnArr[index].selectorType = SelectorTypeSelected;
+    else{
+        for (PGStepTop * btn in self.topBtnArr) {
+            
+            if(btn.selectorType == SelectorTypeSelected){
+                btn.selectorType = SelectorTypeHaveInfoUnSelected;
+            }
+        }
+        if (button.selectorType == SelectorTypeUnSelected) {
+   
+                button.selectorType = SelectorTypeSelected;
+         
+        }
+        else if (button.selectorType == SelectorTypeHaveInfoUnSelected){
+            button.selectorType = SelectorTypeSelected;
+        }
+        
+      
+    }
+    
 }
 @end

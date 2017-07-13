@@ -37,22 +37,24 @@
     }
     else{
         NSLog(@"bottom 第%ld页 按钮%ld",(long)page,(long)tag);
+        float contentX;
         if (page==0 && tag ==0) {
             //点击第一个页面的下一步
-            backView.contentOffset = CGPointMake(V_W, 0);
+            contentX = V_W;
         }
         else if (page==1){
             //点击第二个页面 上步是0 下步为2
-          
-            backView.contentOffset = CGPointMake(V_W*(tag==0?0:2), 0);
+            contentX = V_W*(tag==0?0:2);
         }
         else if (page==2 && tag==0){
             //点击第三个页面 上步是1
-            backView.contentOffset = CGPointMake(V_W, 0);
+            contentX = V_W;
         }
-        
-    }
+        [UIView animateWithDuration:AnimationDuration animations:^{
+            backView.contentOffset = CGPointMake(contentX, 0);
+        }];
 
+    }
 }
 #pragma mark value更改方法
 - (void)valueChangeOfPGInputTextView:(PGInputTextView *)inputTextView{

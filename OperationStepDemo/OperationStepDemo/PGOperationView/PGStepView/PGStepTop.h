@@ -24,10 +24,11 @@
 #define LineWidthDefault    (self.frame.size.width-CircleDefautD)/2 //默认线宽
 #define LineWidthSelect    (self.frame.size.width-CircleFillD)/2 //选中线宽
 #define LineCirclY   self.frame.size.height/3   //起始高度
+#define AnimationDuration  0.5
 typedef  NS_ENUM(NSInteger,SelectorType){
     SelectorTypeUnSelected,      //未选中
-    SelectorTypeSelected,    //选中
-    SelectorTypeHaveInfoUnSelected //有信息未选中
+    SelectorTypeSelected,        //选中
+    SelectorTypeHaveInfoUnSelected, //有信息未选中
 };
 typedef  NS_ENUM(NSInteger,StyleType){
     StyleTypeStart,      //开始样式
@@ -39,6 +40,11 @@ typedef  NS_ENUM(NSInteger,FormType){
     FormTypeTip,         //箭头形式
     FormTypeLineCircle,  //线圈形式
 };
+typedef  NS_ENUM(NSInteger,LineCircleSpecialType){
+    LineCircleSpecialTypeNoAnimation,  //第一个不需要动画
+    LineCircleSpecialTypeAllAnimation, //最后一个走完动画
+    LineCircleSpecialTypeNormalAnimation, //正常动画
+};
 @interface PGStepTop : UIButton
 // 显示形式
 @property (nonatomic ,assign)FormType formType;
@@ -48,6 +54,8 @@ typedef  NS_ENUM(NSInteger,FormType){
 @property (nonatomic ,assign)StyleType  styleType;
 // 下标
 @property (nonatomic ,assign)NSInteger index;
-//初始化  
+// 动画
+@property (nonatomic ,assign)LineCircleSpecialType specialType;
+//初始化
 - (instancetype) initWithTitle:(NSString *) title frame:(CGRect)frame;
 @end
