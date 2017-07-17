@@ -15,21 +15,19 @@
 @property (nonatomic ,strong)UIScrollView * infoBackView;
 @end
 @implementation PGStepBaseView
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame formType:(FormType)type{
     if (self == [super initWithFrame:frame]) {
         self.frame = frame;
- 
-        //这里由于未添加导航，所以将titleView起始位置加高 可自行调整
-        float statusBarHeight = 22;
-        
-        self.titleView  = [[UIScrollView alloc]initWithFrame:CGRectMake(0, statusBarHeight, V_H, T_V_H)];
+        self.formType = type;
+        float height = type == FormTypeTip?T_V_H:T_V_CL_H;
+        self.titleView  = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, V_H, height)];
         self.titleView.backgroundColor = [UIColor colorWithRed:51/255.0 green:48/255.0 blue:44/255.0 alpha:1/1.0];
         [self addSubview:self.titleView];
         
       // 可关闭滑动 可设置自行切换动画
       // 底部按钮 遮挡 infoBackView 可设置 添加视图的contentInset
       // 也可以直接设置infoBackView的contentInset
-        self.infoBackView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, T_V_H+22, V_W, frame.size.height-T_V_H-statusBarHeight)];
+        self.infoBackView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, height, V_W, frame.size.height-height)];
         self.infoBackView.scrollEnabled = YES;
         self.infoBackView.pagingEnabled = YES;
         self.infoBackView.delegate = self;

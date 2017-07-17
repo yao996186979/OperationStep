@@ -17,9 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PGStepBaseView * stepView = [[PGStepBaseView alloc]initWithFrame:self.view.bounds];
-    //设置标题进度展示形式
-    stepView.formType = FormTypeLineCircle;
+    PGStepBaseView * stepView = [[PGStepBaseView alloc]initWithFrame:self.view.bounds formType:FormTypeLineCircle];
     stepView.titleArr = @[@"第一步",@"第二步",@"第三步"];
     stepView.viewArr = [self ProgressView];
     stepView.bottomTitles = @[@[@"下一步"],@[@"上一步",@"下一步"],@[@"上一步"]];
@@ -92,12 +90,12 @@
             
             NSArray * titles = @[@"今夜何时",@"今朝何梦",@"今此为何",@"今苦为谁",@"今生何愿",@"老骥伏枥",@"志在千里",@"厚积薄发",@"天道酬勤"];
             NSArray * types = @[@(TextTypeOnlyShow),@(TextTypeDate),@(TextTypeSelector),@(TextTypeSelector),@(TextTypeSelector),@(TextTypeSelector),@(TextTypeNormal),@(TextTypeNormal),@(TextTypeLongText)];
-//            NSArray * values = @[@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""}];
+ 
             PGBaseInfoView * base = [[PGBaseInfoView alloc]initWithFrame:
                                      CGRectMake(index*V_W, 0, V_W,V_H-T_V_H-T_B_H-20)    titles:titles
-                                                                   types:types
-                                                                  values:nil];
+                                                                   types:types];
             base.inputDelegate = self;
+            base.values = @[@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""},@{@"n":@"",@"id":@""}];
             [returnArr addObject:base];
         }
         else{

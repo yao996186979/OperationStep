@@ -43,7 +43,7 @@
         
         self.backView = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(label.frame)+5, self.frame.size.width,frame.size.height==72.5?BackViewHeight:BackViewHeight+38)];
         self.backView.layer.borderWidth = 1;
-        self.backView.layer.borderColor = [UIColor blackColor].CGColor;
+        self.backView.layer.borderColor = [UIColor colorWithRed:151/255.0 green:151/255.0 blue:151/255.0 alpha:1/1.0].CGColor;
         [self addSubview:self.backView];
       
     }

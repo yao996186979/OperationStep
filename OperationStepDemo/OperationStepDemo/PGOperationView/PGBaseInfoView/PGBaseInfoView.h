@@ -34,8 +34,10 @@
  @param values 初始值
  @return PGBaseInfoView
  */
-- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString*>*)titles types:(NSArray<NSNumber*>*)types values:(NSArray*)values;
-
+- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString*>*)titles types:(NSArray<NSNumber*>*)types values:(NSArray*)values  __attribute__((deprecated("PGOperationView 0.1.3 版本已过期 考虑网络加载情况，初始化赋值不妥")));;
+- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString*>*)titles types:(NSArray<NSNumber*>*)types;
+//代理方法
 @property (nonatomic ,weak) id <PGBaseInfoViewDelegate> inputDelegate;
-
+//所有PGInputTextView的value值 @{@"n":@"显示名称",@"id":@"真实value"}
+@property (nonatomic ,strong)NSArray <NSDictionary *>* values;
 @end

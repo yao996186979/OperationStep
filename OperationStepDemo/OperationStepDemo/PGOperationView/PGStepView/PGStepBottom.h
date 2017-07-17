@@ -16,9 +16,9 @@
 #define S_BB_W WIDTH*0.3
  
 /// 不可点击颜色
-#define UnAble_Color [UIColor colorWithRed:229/255 green:229/255 blue:229/255 alpha:1]
+#define UnAble_Color [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1]
 /// 可点击颜色
-#define Able_Color [UIColor colorWithRed:199/255 green:167/255 blue:123/255 alpha:1]
+#define Able_Color [UIColor colorWithRed:199/255.0 green:167/255.0 blue:123/255.0 alpha:1]
 
 
 

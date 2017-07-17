@@ -15,6 +15,8 @@
 #define V_W CGRectGetWidth([UIScreen mainScreen].bounds)
 // 步骤高度 Title View Height
 #define T_V_H  60
+// 步骤高度 Title View LineCircle Height
+#define T_V_CL_H  70
 // 步骤按钮高度 Title Button Height
 #define T_B_H  40
 @protocol PGStepBaseViewDelegate <NSObject>
@@ -34,6 +36,15 @@
 @end
 @interface PGStepBaseView : UIView
 
+/**
+ 初始化方式
+
+ @param frame frame
+ @param type 展示形式
+ @return PGStepBaseView
+ */
+- (instancetype)initWithFrame:(CGRect)frame formType:(FormType)type;
+//展示形式
 @property (nonatomic, assign) FormType  formType;
 @property (nonatomic, assign) id<PGStepBaseViewDelegate>delegate;
 // 注:请按步骤设置属性
