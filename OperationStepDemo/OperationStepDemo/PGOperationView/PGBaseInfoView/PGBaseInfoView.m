@@ -8,10 +8,7 @@
 
 #import "PGBaseInfoView.h"
 
-@implementation PGBaseInfoView{
-    
-    NSMutableArray * textViews;
-}
+@implementation PGBaseInfoView
 #pragma mark 废弃
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString *> *)titles types:(NSArray<NSNumber *> *)types values:(NSArray *)values{
  
@@ -50,7 +47,7 @@
     if (self = [super initWithFrame:frame]) {
         self.frame = frame;
         //控件的背景
-        textViews = [[NSMutableArray alloc]init];
+        self.textViews = [[NSMutableArray alloc]init];
         UIView * backView = [[UIView alloc]init];
         backView.backgroundColor = [UIColor whiteColor];
         [self addSubview:backView];
@@ -67,7 +64,7 @@
             inputText.delegate = self;
             bottom = CGRectGetMaxY(inputText.frame);
             [backView addSubview:inputText];
-            [textViews addObject:inputText];
+            [self.textViews addObject:inputText];
         }
         backView.frame = CGRectMake(0, 0, self.frame.size.width,bottom+15);
         if (frame.size.height < bottom+15){
@@ -82,7 +79,7 @@
     
     for (NSDictionary * value in values) {
         NSInteger index = [values indexOfObject:value];
-        PGInputTextView * inputText = textViews[index];
+        PGInputTextView * inputText = self.textViews[index];
         inputText.value = value;
     }
     

@@ -21,7 +21,7 @@
         self.formType = type;
         float height = type == FormTypeTip?T_V_H:T_V_CL_H;
         self.titleView  = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, V_H, height)];
-        self.titleView.backgroundColor = [UIColor colorWithRed:51/255.0 green:48/255.0 blue:44/255.0 alpha:1/1.0];
+        self.titleView.backgroundColor = [UIColor colorWithRed:42/255.0 green:38/255.0 blue:35/255.0 alpha:1/1.0];
         [self addSubview:self.titleView];
         
       // 可关闭滑动 可设置自行切换动画

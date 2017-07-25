@@ -217,6 +217,7 @@
         _titleLayer.alignmentMode = kCAAlignmentCenter;//字体的对齐方式
         _titleLayer.position = CGPointMake(self.frame.size.width/2,LineCirclY+25);
         _titleLayer.foregroundColor = UnSelectedTitleColor.CGColor;//字体的颜色
+        _titleLayer.contentsScale = [UIScreen mainScreen].scale;
     }
     return _titleLayer;
 }
@@ -271,6 +272,7 @@
         _textLayer.alignmentMode = kCAAlignmentCenter;//字体的对齐方式
         _textLayer.position = CGPointMake(LineWidthSelect+CircleFillD/2,LineCirclY);
         _textLayer.foregroundColor = [UIColor whiteColor].CGColor;//字体的颜色
+        _textLayer.contentsScale = [UIScreen mainScreen].scale; //防止字体模糊
       
     }
     return _textLayer;

@@ -40,4 +40,7 @@
 @property (nonatomic ,weak) id <PGBaseInfoViewDelegate> inputDelegate;
 //所有PGInputTextView的value值 @{@"n":@"显示名称",@"id":@"真实value"}
 @property (nonatomic ,strong)NSArray <NSDictionary *>* values;
+
+@property (nonatomic ,strong)NSMutableArray * textViews;
+
 @end
