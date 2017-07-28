@@ -21,13 +21,14 @@
     stepView.titleArr = @[@"第一步",@"第二步",@"第三步"];
     stepView.viewArr = [self ProgressView];
     stepView.bottomTitles = @[@[@"下一步"],@[@"上一步",@"下一步"],@[@"上一步"]];
+    [stepView.progressView startAnimationMoveToStep:0];
     stepView.delegate = self;
     [stepView setAllBottomIsAble];
     [self.view addSubview:stepView];
 
 }
 // setpBaseView 代理事件
-- (void)actionClickIsTop:(BOOL)isTop TopButton:(NSArray<PGStepTop *> *)topArr BottomButton:(NSArray<NSArray<StepBottomButton *> *> *)bottomArr Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView *)backView{
+- (void)actionClickIsTop:(BOOL)isTop Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView *)backView{
     // 下标 从 0 开始
     
     if (isTop) {
@@ -39,6 +40,7 @@
         if (page==0 && tag ==0) {
             //点击第一个页面的下一步
             contentX = V_W;
+            
         }
         else if (page==1){
             //点击第二个页面 上步是0 下步为2

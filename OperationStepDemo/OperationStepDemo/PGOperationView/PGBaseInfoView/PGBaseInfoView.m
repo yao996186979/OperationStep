@@ -80,7 +80,15 @@
     for (NSDictionary * value in values) {
         NSInteger index = [values indexOfObject:value];
         PGInputTextView * inputText = self.textViews[index];
-        inputText.value = value;
+        if (value) {
+            if ([value[@"n"] length] == 0) { //无数据 即是nil
+                 inputText.value = nil;
+            }
+            else{
+                 inputText.value = value;
+            }
+        }
+       
     }
     
 }

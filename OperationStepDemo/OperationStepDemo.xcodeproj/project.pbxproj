@@ -22,6 +22,7 @@
 		DA49A0501F0CECAD00948836 /* img-pg16-h-drop-down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA49A04E1F0CECAD00948836 /* img-pg16-h-drop-down@3x.png */; };
 		DA49A0531F0CECF000948836 /* img-pg16-h-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA49A0511F0CECF000948836 /* img-pg16-h-calendar@2x.png */; };
 		DA49A0541F0CECF000948836 /* img-pg16-h-calendar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA49A0521F0CECF000948836 /* img-pg16-h-calendar@3x.png */; };
+		DA7AD3631F29CF7700442500 /* PGOperationProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7AD3621F29CF7700442500 /* PGOperationProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		DA49A04E1F0CECAD00948836 /* img-pg16-h-drop-down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-pg16-h-drop-down@3x.png"; sourceTree = "<group>"; };
 		DA49A0511F0CECF000948836 /* img-pg16-h-calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-pg16-h-calendar@2x.png"; sourceTree = "<group>"; };
 		DA49A0521F0CECF000948836 /* img-pg16-h-calendar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-pg16-h-calendar@3x.png"; sourceTree = "<group>"; };
+		DA7AD3611F29CF7700442500 /* PGOperationProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGOperationProgressView.h; sourceTree = "<group>"; };
+		DA7AD3621F29CF7700442500 /* PGOperationProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGOperationProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 				DA49A0451F0CD21600948836 /* PGStepBottom.m */,
 				DA49A0461F0CD21600948836 /* PGStepTop.h */,
 				DA49A0471F0CD21600948836 /* PGStepTop.m */,
+				DA7AD3611F29CF7700442500 /* PGOperationProgressView.h */,
+				DA7AD3621F29CF7700442500 /* PGOperationProgressView.m */,
 			);
 			path = PGStepView;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				DA49A0481F0CD21600948836 /* PGBaseInfoView.m in Sources */,
 				DA049F8C1ECEC746000B2C6B /* ViewController.m in Sources */,
 				DA49A04A1F0CD21600948836 /* PGStepBaseView.m in Sources */,
+				DA7AD3631F29CF7700442500 /* PGOperationProgressView.m in Sources */,
 				DA49A04B1F0CD21600948836 /* PGStepBottom.m in Sources */,
 				DA49A04C1F0CD21600948836 /* PGStepTop.m in Sources */,
 				DA49A0491F0CD21600948836 /* PGInputTextView.m in Sources */,

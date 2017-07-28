@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PGStepTop.h"
 #import "PGStepBottom.h"
+#import "PGOperationProgressView.h"
 /// 屏幕高度
 #define V_H CGRectGetHeight([UIScreen mainScreen].bounds)
 /// 屏幕宽度
@@ -31,8 +32,10 @@
  @param tag 点击哪个
  @param page 当前页
  */
-- (void)actionClickIsTop:(BOOL)isTop TopButton:(NSArray<PGStepTop*>*)topArr BottomButton:(NSArray<NSArray<StepBottomButton *>*>*)bottomArr Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView*)backView;
+@optional
+- (void)actionClickIsTop:(BOOL)isTop TopButton:(NSArray<PGStepTop*>*)topArr BottomButton:(NSArray<NSArray<StepBottomButton *>*>*)bottomArr Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView*)backView __attribute__((deprecated("PGOperationView 0.2.0 版本已过期 topArr bottomArr无用删除")));
 
+- (void)actionClickIsTop:(BOOL)isTop Tag:(NSInteger)tag Page:(NSInteger)page backView:(UIScrollView*)backView;
 @end
 @interface PGStepBaseView : UIView
 
@@ -61,6 +64,9 @@
 @property (nonatomic, strong)NSMutableArray <PGStepTop*>* topBtnArr;
 // 下部分按钮
 @property (nonatomic, strong)NSMutableArray <NSArray <StepBottomButton *>*>* bottomBtnArr;
+
+@property (nonatomic, strong) PGOperationProgressView * progressView ;
 ///设置下部按钮全开
 - (void)setAllBottomIsAble;
+ 
 @end

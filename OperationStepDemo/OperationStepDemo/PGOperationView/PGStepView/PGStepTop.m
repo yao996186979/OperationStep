@@ -320,6 +320,7 @@
     }
     return _circleLayer;
 }
+
 #pragma mark 光圈动画
 - (CAAnimationGroup *)groupAnima{
     if (!_groupAnima) {

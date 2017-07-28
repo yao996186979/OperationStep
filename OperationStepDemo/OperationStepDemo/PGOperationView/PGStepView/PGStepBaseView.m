@@ -8,7 +8,7 @@
 
 #import "PGStepBaseView.h"
 
-@interface PGStepBaseView()<BottomButtonDelegate,UIScrollViewDelegate>
+@interface PGStepBaseView()<BottomButtonDelegate,UIScrollViewDelegate,PGOperationProgressViewDelegate>
 // 标题视图
 @property (nonatomic ,strong)UIScrollView * titleView;
 // 信息展示视图
@@ -20,7 +20,7 @@
         self.frame = frame;
         self.formType = type;
         float height = type == FormTypeTip?T_V_H:T_V_CL_H;
-        self.titleView  = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, V_H, height)];
+        self.titleView  = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, V_W, height)];
         self.titleView.backgroundColor = [UIColor colorWithRed:42/255.0 green:38/255.0 blue:35/255.0 alpha:1/1.0];
         [self addSubview:self.titleView];
         
@@ -40,49 +40,22 @@
 }
 
 #pragma mark 设置标题
+
 - (void)setTitleArr:(NSArray *)titleArr{
-    
-    self.titleBtnWidth =self.formType == FormTypeTip?(V_W - 40)/titleArr.count+tipWidth/2:V_W/titleArr.count;
-    for (int index = 0; index < titleArr.count; index ++) {
-        
-        PGStepTop * step = [[PGStepTop alloc]initWithTitle:titleArr[index] frame:CGRectZero];
-        
-        if (self.formType == FormTypeTip) {
-            step.frame = CGRectMake(10+(self.titleBtnWidth-10)*index,(T_V_H - T_B_H)/2, self.titleBtnWidth, T_B_H);
-            if (index == 0) {                  //第一位起始样式
-                step.styleType  = StyleTypeStart;
-                step.selectorType = SelectorTypeSelected; //默认第一步选中
-            }
-            else if (index == titleArr.count-1){ //末尾结束样式
-                step.styleType = StyleTypeEnd;
-            }
-            else{                              //中间样式
-                step.styleType = StyleTypeMiddle;
-            }
+    if (_formType == FormTypeTip) {
+        self.titleBtnWidth =self.formType == FormTypeTip?(V_W - 40)/titleArr.count+tipWidth/2:V_W/titleArr.count;
+        for (int index = 0; index < titleArr.count; index ++){
+             PGStepTop * step = [[PGStepTop alloc]initWithTitle:titleArr[index] frame:CGRectZero];
+            step.tag = index;
+            [step addTarget:self action:@selector(topAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.titleView addSubview:step];
+            [self.topBtnArr addObject:step];
         }
-        else{
-            step.frame = CGRectMake(self.titleBtnWidth*index, (T_V_H - T_B_H)/2, self.titleBtnWidth, T_B_H);
-            step.index = index + 1;
-            step.formType = FormTypeLineCircle;
-            step.styleType = StyleTypeLineCircle;
-            //这里需要注意
-            //第一个默认为选中状态 不需要动画
-            if (index == 0) {
-                step.specialType = LineCircleSpecialTypeNoAnimation;
-                step.selectorType = SelectorTypeSelected;
-            }
-             //最后一个需要将进程走完
-            else if (index == titleArr.count-1){
-                step.specialType = LineCircleSpecialTypeAllAnimation;
-            }
-            else{
-                step.specialType = LineCircleSpecialTypeNormalAnimation;
-            }
-      }
-        step.tag = index;
-        [step addTarget:self action:@selector(topAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.titleView addSubview:step];
-        [self.topBtnArr addObject:step];
+    }
+    else{
+        self.progressView = [[PGOperationProgressView alloc]initWithFrame:_titleView.frame titles:titleArr];
+        self.progressView.operationDelegate = self;
+        [_titleView addSubview:self.progressView];
     }
 }
 #pragma mark 设置视图
@@ -114,18 +87,49 @@
     if (button.selectorType == SelectorTypeUnSelected) {
         return;
     }
-    [self changeTopButtonWithStepTop:button];
+    [self changePageWithStepTop:button.tag];
   
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:TopButton:BottomButton:Tag:Page:backView:)]) {
-        [self.delegate actionClickIsTop:YES TopButton:self.topBtnArr BottomButton:self.bottomBtnArr Tag:button.tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:Tag:Page:backView:)]) {
+        [self.delegate actionClickIsTop:YES Tag:button.tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
     }
+}
+#pragma mark FormTypeLineCircle上部分点击事件
+- (void)operationProgressView:(PGOperationProgressView *)progressView Action:(PGStepButton *)button{
+ 
+    //方法提供出来 证明按钮已经可以点击
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:Tag:Page:backView:)]) {
+        [self.delegate actionClickIsTop:YES Tag:button.tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
+    }
+    [self changePageWithStepTop:button.tag];
 }
 #pragma mark 下部分点击事件
 - (void)clickButtonTag:(NSInteger)tag{
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:TopButton:BottomButton:Tag:Page:backView:)]) {
-        [self.delegate actionClickIsTop:NO TopButton:self.topBtnArr BottomButton:self.bottomBtnArr Tag:tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
+    NSInteger page = self.infoBackView.contentOffset.x/V_W;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:Tag:Page:backView:)]) {
+        [self.delegate actionClickIsTop:NO Tag:tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
+    }
+    if ([self.bottomBtnArr[page][tag].titleLabel.text isEqualToString:@"下一步"]) {
+        [self changePageWithStepTop:page+1];
+    }
+}
+
+#pragma mark 更改页面显示位置 上/下公用方法
+- (void)changePageWithStepTop:(NSInteger)index{
+    
+    [UIView animateWithDuration:AnimationDuration animations:^{
+        self.infoBackView.contentOffset = CGPointMake(index* V_W, 0);
+    }];
+    if (self.formType == FormTypeTip) {
+        for (PGStepTop * btn in self.topBtnArr) {
+            btn.selectorType = SelectorTypeUnSelected;
+        }
+        self.topBtnArr[index].selectorType = SelectorTypeSelected;
+    }
+    else{
+        self.progressView.stepButtonArr[index].stepState = PGStepButtonStateSelected;
+        [self.progressView startAnimationMoveToStep:index];
     }
 }
 #pragma mark 设置下部按钮全开
@@ -135,48 +139,5 @@
             btn.isAble = YES;
         }
     }
-}
-#pragma mark scroll滑动结束
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    // 设置 顶部按钮 状态变化
-    int index = scrollView.contentOffset.x/V_W;
-    
-   [self changeTopButtonWithStepTop:self.topBtnArr[index]];
-}
-#pragma mark 上部分状态变换
-- (void)changeTopButtonWithStepTop:(PGStepTop*)button{
-    
-    //切换 视图展示
-    [UIView animateWithDuration:AnimationDuration animations:^{
-       self.infoBackView.contentOffset = CGPointMake(button.tag* V_W, 0);
-    }];
-    
-    
-    if (self.formType == FormTypeTip){
-        for (PGStepTop * btn in self.topBtnArr) {
-            btn.selectorType = SelectorTypeUnSelected;
-        }
-        self.topBtnArr[button.tag].selectorType = SelectorTypeSelected;
-    }
-    else{
-        for (PGStepTop * btn in self.topBtnArr) {
-            
-            if(btn.selectorType == SelectorTypeSelected){
-                btn.selectorType = SelectorTypeHaveInfoUnSelected;
-            }
-        }
-        if (button.selectorType == SelectorTypeUnSelected) {
-   
-                button.selectorType = SelectorTypeSelected;
-         
-        }
-        else if (button.selectorType == SelectorTypeHaveInfoUnSelected){
-            button.selectorType = SelectorTypeSelected;
-        }
-        
-      
-    }
-    
 }
 @end
