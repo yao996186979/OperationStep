@@ -77,5 +77,10 @@
         [self setTitleColor:UnAble_Color forState:UIControlStateNormal];
         self.layer.borderColor = UnAble_Color.CGColor;
     }
+    if ([self.titleLabel.text isEqualToString:@"终止"]) {
+        //业务需求暂时如此处理 终止按钮样式
+        [self setTitleColor:Specail_Color forState:UIControlStateNormal];
+        self.layer.borderColor = Specail_Color.CGColor;
+    }
 }
 @end

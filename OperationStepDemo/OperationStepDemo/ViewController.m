@@ -20,7 +20,7 @@
     PGStepBaseView * stepView = [[PGStepBaseView alloc]initWithFrame:self.view.bounds formType:FormTypeLineCircle];
     stepView.titleArr = @[@"第一步",@"第二步",@"第三步"];
     stepView.viewArr = [self ProgressView];
-    stepView.bottomTitles = @[@[@"下一步"],@[@"上一步",@"下一步"],@[@"上一步"]];
+    stepView.bottomTitles = @[@[@"终止",@"下一步"],@[@"终止",@"下一步"],@[@"终止",@"上一步"]];
     [stepView.progressView startAnimationMoveToStep:0];
     stepView.delegate = self;
     [stepView setAllBottomIsAble];
@@ -46,7 +46,7 @@
             //点击第二个页面 上步是0 下步为2
             contentX = V_W*(tag==0?0:2);
         }
-        else if (page==2 && tag==0){
+        else {
             //点击第三个页面 上步是1
             contentX = V_W;
         }

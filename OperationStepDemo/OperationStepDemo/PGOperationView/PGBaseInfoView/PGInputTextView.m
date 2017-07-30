@@ -12,7 +12,7 @@
 // 文本有值颜色  333333
 #define NormalColor  [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1/1.0]
 // 文本默认颜色  666666
-#define DefaultColor [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1/1.0]
+#define DefaultColor [UIColor colorWithRed:229/255.0 green:229/255.0 blue:229/255.0 alpha:1/1.0]
 // 标题颜色     999999
 #define TitleColor [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1/1.0]
 

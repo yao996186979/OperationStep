@@ -13,18 +13,20 @@
 /// 底部按钮高度 Step Bottom Button Height
 #define S_BB_H 36
 /// 底部按钮高度 Step Bottom Button Weight  按比例计算
-#define S_BB_W WIDTH*0.3
+#define S_BB_W 126
  
 /// 不可点击颜色
-#define UnAble_Color [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1]
+#define UnAble_Color [UIColor colorWithRed:229/255.0 green:229/255.0 blue:229/255.0 alpha:1/1.0]
 /// 可点击颜色
 #define Able_Color [UIColor colorWithRed:199/255.0 green:167/255.0 blue:123/255.0 alpha:1]
 
-
+#define Specail_Color [UIColor colorWithRed:255/255.0 green:18/255.0 blue:18/255.0 alpha:1]
 
 @interface StepBottomButton : UIButton
 // 默认为不可点击
 @property (nonatomic, assign)BOOL isAble;
+
+
 @end
 
 
