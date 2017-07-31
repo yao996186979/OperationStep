@@ -253,7 +253,7 @@
     float x = 0.0;
     switch (step) {
         case 0:
-            x = CircleFillD +_fillLineWidth;
+            x = CircleFillD +_fillLineWidth+0.5; //避免圆形缺口
             [self setTextLayer:_showTextArr[0] colorIsLight:YES];
             [self setTextLayer:_showTextArr[1] colorIsLight:NO];
             [self setTextLayer:_showTextArr[2] colorIsLight:NO];

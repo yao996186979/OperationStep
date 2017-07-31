@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #define  WIDTH [UIScreen mainScreen].bounds.size.width
 /// 底部视图高度 Step Bottom Height
-#define S_B_H 50
+#define S_B_H  60
 /// 底部按钮高度 Step Bottom Button Height
 #define S_BB_H 36
 /// 底部按钮高度 Step Bottom Button Weight  按比例计算

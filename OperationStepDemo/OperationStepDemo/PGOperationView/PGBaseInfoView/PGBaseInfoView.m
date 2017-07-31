@@ -81,7 +81,7 @@
         NSInteger index = [values indexOfObject:value];
         PGInputTextView * inputText = self.textViews[index];
         if (value) {
-            if ([value[@"n"] length] == 0) { //无数据 即是nil
+            if ([[NSString stringWithFormat:@"%@",value] length] == 0) { //无数据 即是nil
                  inputText.value = nil;
             }
             else{
