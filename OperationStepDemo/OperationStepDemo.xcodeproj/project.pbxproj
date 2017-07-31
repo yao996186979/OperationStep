@@ -23,6 +23,8 @@
 		DA49A0531F0CECF000948836 /* img-pg16-h-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA49A0511F0CECF000948836 /* img-pg16-h-calendar@2x.png */; };
 		DA49A0541F0CECF000948836 /* img-pg16-h-calendar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA49A0521F0CECF000948836 /* img-pg16-h-calendar@3x.png */; };
 		DA7AD3631F29CF7700442500 /* PGOperationProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7AD3621F29CF7700442500 /* PGOperationProgressView.m */; };
+		DAC9FF011F2F093E00FD818C /* page_next_0.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC9FEFF1F2F093E00FD818C /* page_next_0.png */; };
+		DAC9FF021F2F093E00FD818C /* page_next_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC9FF001F2F093E00FD818C /* page_next_1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		DA49A0521F0CECF000948836 /* img-pg16-h-calendar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img-pg16-h-calendar@3x.png"; sourceTree = "<group>"; };
 		DA7AD3611F29CF7700442500 /* PGOperationProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGOperationProgressView.h; sourceTree = "<group>"; };
 		DA7AD3621F29CF7700442500 /* PGOperationProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGOperationProgressView.m; sourceTree = "<group>"; };
+		DAC9FEFF1F2F093E00FD818C /* page_next_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page_next_0.png; sourceTree = "<group>"; };
+		DAC9FF001F2F093E00FD818C /* page_next_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page_next_1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				DA049F8D1ECEC746000B2C6B /* Main.storyboard */,
 				DA049F901ECEC746000B2C6B /* Assets.xcassets */,
 				DA049F921ECEC746000B2C6B /* LaunchScreen.storyboard */,
+				DAC9FEFF1F2F093E00FD818C /* page_next_0.png */,
+				DAC9FF001F2F093E00FD818C /* page_next_1.png */,
 				DA049F951ECEC746000B2C6B /* Info.plist */,
 				DA49A0511F0CECF000948836 /* img-pg16-h-calendar@2x.png */,
 				DA49A0521F0CECF000948836 /* img-pg16-h-calendar@3x.png */,
@@ -176,7 +182,7 @@
 				TargetAttributes = {
 					DA049F801ECEC746000B2C6B = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = VT5FYP293R;
+						DevelopmentTeam = KE9J58DYLQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -208,7 +214,9 @@
 				DA049F941ECEC746000B2C6B /* LaunchScreen.storyboard in Resources */,
 				DA049F911ECEC746000B2C6B /* Assets.xcassets in Resources */,
 				DA49A0541F0CECF000948836 /* img-pg16-h-calendar@3x.png in Resources */,
+				DAC9FF011F2F093E00FD818C /* page_next_0.png in Resources */,
 				DA49A0501F0CECAD00948836 /* img-pg16-h-drop-down@3x.png in Resources */,
+				DAC9FF021F2F093E00FD818C /* page_next_1.png in Resources */,
 				DA049F8F1ECEC746000B2C6B /* Main.storyboard in Resources */,
 				DA49A0531F0CECF000948836 /* img-pg16-h-calendar@2x.png in Resources */,
 			);
@@ -350,7 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VT5FYP293R;
+				DEVELOPMENT_TEAM = KE9J58DYLQ;
 				INFOPLIST_FILE = OperationStepDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -364,7 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VT5FYP293R;
+				DEVELOPMENT_TEAM = KE9J58DYLQ;
 				INFOPLIST_FILE = OperationStepDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

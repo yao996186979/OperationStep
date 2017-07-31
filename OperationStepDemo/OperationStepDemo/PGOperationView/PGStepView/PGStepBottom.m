@@ -52,7 +52,9 @@
 
 
 
-@implementation StepBottomButton
+@implementation StepBottomButton{
+    UIImageView *nextImg;
+}
 - (instancetype)initWithFrame:(CGRect)frame{
     if(self == [super initWithFrame:frame]){
         
@@ -63,12 +65,17 @@
         self.layer.cornerRadius = 18;
         self.titleLabel.font =  [UIFont fontWithName:@"PingFangSC-Medium" size:12];
         
+        nextImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+        nextImg.center = CGPointMake(frame.size.width-29, frame.size.height/2);
+        nextImg.bounds = CGRectMake(0, 0, 14, 12);
+        [self addSubview:nextImg];
     }
     return self;
 }
 - (void)setIsAble:(BOOL)isAble{
     _isAble = isAble;
     self.enabled = isAble;
+    
     if(isAble){
         [self setTitleColor:Able_Color forState:UIControlStateNormal];
         self.layer.borderColor = Able_Color.CGColor;
@@ -81,6 +88,9 @@
         //业务需求暂时如此处理 终止按钮样式
         [self setTitleColor:Specail_Color forState:UIControlStateNormal];
         self.layer.borderColor = Specail_Color.CGColor;
+    }
+    if([self.titleLabel.text isEqualToString:@"下一步"]){
+        nextImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"page_next_%d",isAble]];
     }
 }
 @end

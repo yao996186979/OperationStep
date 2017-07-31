@@ -94,25 +94,20 @@
     }
 }
 #pragma mark FormTypeLineCircle上部分点击事件
-- (void)operationProgressView:(PGOperationProgressView *)progressView Action:(PGStepButton *)button{
- 
+- (void)operationProgressView:(PGOperationProgressView *)progressView Action:(UIButton *)button{
     //方法提供出来 证明按钮已经可以点击
-    
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:Tag:Page:backView:)]) {
         [self.delegate actionClickIsTop:YES Tag:button.tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
     }
-    [self changePageWithStepTop:button.tag];
 }
 #pragma mark 下部分点击事件
 - (void)clickButtonTag:(NSInteger)tag{
     
-    NSInteger page = self.infoBackView.contentOffset.x/V_W;
+   //方法 提供出去 没办法考虑到所有因素 交与用户处理
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:Tag:Page:backView:)]) {
         [self.delegate actionClickIsTop:NO Tag:tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
     }
-    if ([self.bottomBtnArr[page][tag].titleLabel.text isEqualToString:@"下一步"]) {
-        [self changePageWithStepTop:page+1];
-    }
+ 
 }
 
 #pragma mark 更改页面显示位置 上/下公用方法
@@ -128,7 +123,7 @@
         self.topBtnArr[index].selectorType = SelectorTypeSelected;
     }
     else{
-        self.progressView.stepButtonArr[index].stepState = PGStepButtonStateSelected;
+       
         [self.progressView startAnimationMoveToStep:index];
     }
 }

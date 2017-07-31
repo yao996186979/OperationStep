@@ -6,13 +6,15 @@
 //  Copyright © 2017年 姚东. All rights reserved.
 //
 
+/*
+ 1：公开移动方法 需不需要在内部移动？
+ 2：默认初始化 指定位置
+ 3：点击事件的公开
+
+ 总结：移动点亮  统一放于外部  只提供移动点亮的接口  移动与点亮不可以强相关 
+ 线可以控制 文字的亮灭 线到哪 文字亮哪
+ */
 #import "PGOperationProgressView.h"
-
-
-@implementation PGStepButton
-
-
-@end
 
 @interface PGOperationProgressView()<CAAnimationDelegate>
 //底层
@@ -84,7 +86,7 @@
 #pragma mark 文字
 - (void)addTextLayerTitles:(NSArray*)titles{
     self.showTextArr = [[NSMutableArray alloc]init];
-    self.stepButtonArr = [[NSMutableArray alloc]init];
+    
     for (int index =0 ; index < titles.count; index ++) {
         CATextLayer *titleLayer = [[CATextLayer alloc]init];
         titleLayer.string = titles[index];
@@ -103,11 +105,11 @@
         [_showTextArr addObject:titleLayer];
         
         //顺便添加 覆盖的按钮
-        PGStepButton * coverButton = [[PGStepButton alloc]initWithFrame:CGRectMake(index * self.frame.size.width/titles.count, 0, self.frame.size.width/titles.count, self.frame.size.height)];
+        UIButton * coverButton = [[UIButton alloc]initWithFrame:CGRectMake(index * self.frame.size.width/titles.count, 0, self.frame.size.width/titles.count, self.frame.size.height)];
         [coverButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         coverButton.tag = index;
         [self addSubview:coverButton];
-        [self.stepButtonArr addObject:coverButton];
+  
     }
 }
 
@@ -189,7 +191,7 @@
     return _circleLayer;
 }
 #pragma mark 光圈动画
-- (CAAnimationGroup *)addCircleAnimatiom{
+- (CAAnimationGroup *)groupAnima{
     if (!_groupAnima) {
         CAReplicatorLayer *replicatorLayer = [CAReplicatorLayer layer];
         replicatorLayer.frame = CGRectMake(0, 0, CircleHaloD, CircleHaloD);
@@ -217,16 +219,10 @@
 }
 
 /*************************实线方法***************************/
--(void)buttonClick:(PGStepButton*)button{
-    //内部的实现内部解决
-    //需要认清几点,进度是外部控制
-    //除非 按钮是选中未有信息的状态才可以点击 否则return
-    if (button.stepState != PGStepButtonStateUnSelected) {
-        if ([_operationDelegate respondsToSelector:@selector(operationProgressView:Action:)]) {
-            [_operationDelegate operationProgressView:self  Action:button];
-        }
-        button.stepState = PGStepButtonStateSelected;
-        [self startAnimationMoveToStep:button.tag];
+-(void)buttonClick:(UIButton*)button{
+   
+    if ([_operationDelegate respondsToSelector:@selector(operationProgressView:Action:)]) {
+        [_operationDelegate operationProgressView:self  Action:button];
     }
 }
 #pragma mark 移动位置
@@ -259,11 +255,14 @@
         case 0:
             x = CircleFillD +_fillLineWidth;
             [self setTextLayer:_showTextArr[0] colorIsLight:YES];
+            [self setTextLayer:_showTextArr[1] colorIsLight:NO];
+            [self setTextLayer:_showTextArr[2] colorIsLight:NO];
             break;
         case 1:
             x = CircleFillD*2 +_fillLineWidth*3;
             [self setTextLayer:_showTextArr[0] colorIsLight:YES];
             [self setTextLayer:_showTextArr[1] colorIsLight:YES];
+             [self setTextLayer:_showTextArr[2] colorIsLight:NO];
             break;
         case 2:
             x = CircleFillD*3 +_fillLineWidth*6;
@@ -279,17 +278,16 @@
     _circleLayer.position =  CGPointMake(self.frame.size.width/3*step+self.frame.size.width/6, _circleLayer.position.y);
     [self startAnimationMoveToPointX:x];
 }
+
 #pragma mark 点亮文字
 
 - (void)setTextLayer:(CATextLayer*)textLayer colorIsLight:(BOOL)isLight{
     CGColorRef color =  isLight?SelectedTitleColor.CGColor:UnSelectedTitleColor.CGColor;
- 
     [CATransaction begin];
     [CATransaction setAnimationDuration:.5];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     textLayer.foregroundColor = color;
     [CATransaction commit];
-    
 }
 @end

@@ -68,5 +68,11 @@
 @property (nonatomic, strong) PGOperationProgressView * progressView ;
 ///设置下部按钮全开
 - (void)setAllBottomIsAble;
+/**
+ 更改页面显示位置 上/下公用方法
  
+ @return
+ */
+#pragma mark
+- (void)changePageWithStepTop:(NSInteger)index;
 @end

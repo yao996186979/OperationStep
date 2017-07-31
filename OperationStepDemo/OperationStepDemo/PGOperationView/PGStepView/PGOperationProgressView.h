@@ -22,16 +22,7 @@
 #define LineCirclY   self.frame.size.height/3   //起始高度
 #define AnimationDuration  0.5
 
-typedef  NS_ENUM(NSInteger,PGStepButtonState){
-    PGStepButtonStateUnSelected,         //未选中
-    PGStepButtonStateSelected,           //选中
-    PGStepButtonStateHaveInfoUnSelected, //有信息未选中
-};
-@interface PGStepButton : UIButton
-@property (nonatomic ,assign) PGStepButtonState stepState;
 
-
-@end
 
 @class PGOperationProgressView;
 @protocol PGOperationProgressViewDelegate <NSObject>
@@ -41,13 +32,12 @@ typedef  NS_ENUM(NSInteger,PGStepButtonState){
  
  @param button 按钮
  */
-- (void)operationProgressView:(PGOperationProgressView*)progressView Action:(PGStepButton*)button;
+- (void)operationProgressView:(PGOperationProgressView*)progressView Action:(UIButton*)button;
 @end
 @interface PGOperationProgressView : UIView
 //协议方法
 @property (nonatomic ,weak) id <PGOperationProgressViewDelegate> operationDelegate;
-//记录按钮信息
-@property (nonatomic ,strong)NSMutableArray <PGStepButton *>* stepButtonArr;
+ 
 /**
  初始化方法
  @param frame 尺寸

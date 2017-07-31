@@ -10,21 +10,21 @@
 #import "PGStepBaseView.h"
 #import "PGBaseInfoView.h"
 @interface ViewController ()<PGStepBaseViewDelegate,PGBaseInfoViewDelegate>
-
+@property (nonatomic ,strong)PGStepBaseView * stepView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    PGStepBaseView * stepView = [[PGStepBaseView alloc]initWithFrame:self.view.bounds formType:FormTypeLineCircle];
-    stepView.titleArr = @[@"第一步",@"第二步",@"第三步"];
-    stepView.viewArr = [self ProgressView];
-    stepView.bottomTitles = @[@[@"终止",@"下一步"],@[@"终止",@"下一步"],@[@"终止",@"上一步"]];
-    [stepView.progressView startAnimationMoveToStep:0];
-    stepView.delegate = self;
-    [stepView setAllBottomIsAble];
-    [self.view addSubview:stepView];
+    self.stepView = [[PGStepBaseView alloc]initWithFrame:self.view.bounds formType:FormTypeLineCircle];
+    self.stepView.titleArr = @[@"第一步",@"第二步",@"第三步"];
+    self.stepView.viewArr = [self ProgressView];
+    self.stepView.bottomTitles = @[@[@"下一步"],@[@"上一步",@"下一步"],@[@"上一步"]];
+    [self.stepView.progressView startAnimationMoveToStep:0];
+    self.stepView.delegate = self;
+    [self.stepView setAllBottomIsAble];
+    [self.view addSubview:self.stepView];
 
 }
 // setpBaseView 代理事件
@@ -33,27 +33,23 @@
     
     if (isTop) {
         NSLog(@"top %ld",(long)tag);
+         [self.stepView changePageWithStepTop:tag];
     }
     else{
         NSLog(@"bottom 第%ld页 按钮%ld",(long)page,(long)tag);
-        float contentX;
-        if (page==0 && tag ==0) {
-            //点击第一个页面的下一步
-            contentX = V_W;
-            
+    
+        switch (page) {
+            case 0:
+                [self.stepView changePageWithStepTop:1];
+                break;
+            case 1:
+                [self.stepView changePageWithStepTop:tag==0?0:2];
+                break;
+            default:
+                [self.stepView changePageWithStepTop:1];
+                break;
         }
-        else if (page==1){
-            //点击第二个页面 上步是0 下步为2
-            contentX = V_W*(tag==0?0:2);
-        }
-        else {
-            //点击第三个页面 上步是1
-            contentX = V_W;
-        }
-        [UIView animateWithDuration:AnimationDuration animations:^{
-            backView.contentOffset = CGPointMake(contentX, 0);
-        }];
-
+       
     }
 }
 #pragma mark value更改方法

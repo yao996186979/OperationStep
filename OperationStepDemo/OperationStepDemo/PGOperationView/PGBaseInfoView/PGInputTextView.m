@@ -19,7 +19,7 @@
 
 @interface PGInputTextView() <UITextViewDelegate,UITextFieldDelegate>
 @property (nonatomic ,strong) UIButton * backView; //文本背景框
-@property (nonatomic ,copy) NSString *title;
+@property (nonatomic ,copy)   NSString *title;
 @property (nonatomic ,strong) UITextField * inputText;  //纯文本
 @property (nonatomic ,strong) UILabel * dateLable;      //日期展示
 @property (nonatomic ,strong) UILabel * onlyShow;       //仅用来显示
@@ -43,7 +43,7 @@
         
         self.backView = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(label.frame)+5, self.frame.size.width,frame.size.height==72.5?BackViewHeight:BackViewHeight+38)];
         self.backView.layer.borderWidth = 1;
-        self.backView.layer.borderColor = [UIColor colorWithRed:151/255.0 green:151/255.0 blue:151/255.0 alpha:1/1.0].CGColor;
+        self.backView.layer.borderColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.1/1.0].CGColor;
         [self addSubview:self.backView];
       
     }
