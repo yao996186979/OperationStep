@@ -97,7 +97,8 @@
 - (void)operationProgressView:(PGOperationProgressView *)progressView Action:(UIButton *)button{
     //方法提供出来 证明按钮已经可以点击
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionClickIsTop:Tag:Page:backView:)]) {
-        [self.delegate actionClickIsTop:YES Tag:button.tag Page:self.infoBackView.contentOffset.x/V_W backView:self.infoBackView];
+        //上部分的page 起始就是按钮的tag
+        [self.delegate actionClickIsTop:YES Tag:button.tag Page:button.tag backView:self.infoBackView];
     }
 }
 #pragma mark 下部分点击事件
@@ -126,6 +127,13 @@
        
         [self.progressView startAnimationMoveToStep:index];
     }
+}
+#pragma mark 移动页面
+- (void)changePageCircleWithStepTop:(NSInteger)index{
+    [UIView animateWithDuration:AnimationDuration animations:^{
+        self.infoBackView.contentOffset = CGPointMake(index* V_W, 0);
+    }];
+    [self.progressView moveCirclePositionToStep:index];
 }
 #pragma mark 设置下部按钮全开
 - (void)setAllBottomIsAble{

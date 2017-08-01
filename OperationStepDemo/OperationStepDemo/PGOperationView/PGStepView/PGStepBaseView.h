@@ -70,9 +70,10 @@
 - (void)setAllBottomIsAble;
 /**
  更改页面显示位置 上/下公用方法
- 
- @return
  */
-#pragma mark
 - (void)changePageWithStepTop:(NSInteger)index;
+/**
+移动页面 光圈
+ */
+- (void)changePageCircleWithStepTop:(NSInteger)index;
 @end

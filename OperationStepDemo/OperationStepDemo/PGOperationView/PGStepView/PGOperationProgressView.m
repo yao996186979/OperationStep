@@ -213,6 +213,8 @@
         _groupAnima.duration = 2.0;
         _groupAnima.autoreverses = NO;
         _groupAnima.repeatCount = HUGE;
+//        顶部动画页面切换时失效
+        _groupAnima.removedOnCompletion = NO;
     }
     return _groupAnima;
     
@@ -249,23 +251,23 @@
 }
 #pragma mark 移动步骤
 - (void)startAnimationMoveToStep:(NSInteger)step{
-    
+    // +0.5避免圆形缺口
     float x = 0.0;
     switch (step) {
         case 0:
-            x = CircleFillD +_fillLineWidth+0.5; //避免圆形缺口
+            x = CircleFillD +_fillLineWidth+0.5;
             [self setTextLayer:_showTextArr[0] colorIsLight:YES];
             [self setTextLayer:_showTextArr[1] colorIsLight:NO];
             [self setTextLayer:_showTextArr[2] colorIsLight:NO];
             break;
         case 1:
-            x = CircleFillD*2 +_fillLineWidth*3;
+            x = CircleFillD*2 +_fillLineWidth*3+0.5;
             [self setTextLayer:_showTextArr[0] colorIsLight:YES];
             [self setTextLayer:_showTextArr[1] colorIsLight:YES];
              [self setTextLayer:_showTextArr[2] colorIsLight:NO];
             break;
         case 2:
-            x = CircleFillD*3 +_fillLineWidth*6;
+            x = CircleFillD*3 +_fillLineWidth*6+0.5;
             [self setTextLayer:_showTextArr[0] colorIsLight:YES];
             [self setTextLayer:_showTextArr[1] colorIsLight:YES];
             [self setTextLayer:_showTextArr[2] colorIsLight:YES];
@@ -275,10 +277,13 @@
     }
     
   
-    _circleLayer.position =  CGPointMake(self.frame.size.width/3*step+self.frame.size.width/6, _circleLayer.position.y);
+    [self moveCirclePositionToStep:step];
     [self startAnimationMoveToPointX:x];
 }
-
+#pragma mark 移动光圈
+- (void)moveCirclePositionToStep:(NSInteger)step{
+      _circleLayer.position =  CGPointMake(self.frame.size.width/3*step+self.frame.size.width/6, _circleLayer.position.y);
+}
 #pragma mark 点亮文字
 
 - (void)setTextLayer:(CATextLayer*)textLayer colorIsLight:(BOOL)isLight{

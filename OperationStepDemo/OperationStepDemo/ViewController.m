@@ -33,7 +33,7 @@
     
     if (isTop) {
         NSLog(@"top %ld",(long)tag);
-         [self.stepView changePageWithStepTop:tag];
+         [self.stepView changePageCircleWithStepTop:tag];
     }
     else{
         NSLog(@"bottom 第%ld页 按钮%ld",(long)page,(long)tag);

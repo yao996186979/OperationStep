@@ -55,4 +55,7 @@
 - (void)startAnimationMoveToPointX:(float)x;
 //指定步骤移动
 - (void)startAnimationMoveToStep:(NSInteger)step;
+
+//移动光圈
+- (void)moveCirclePositionToStep:(NSInteger)step;
 @end
